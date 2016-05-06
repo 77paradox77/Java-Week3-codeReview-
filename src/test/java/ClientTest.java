@@ -29,6 +29,16 @@ public class ClientTest {
 
   @Test
   public void equals_returnsTrueifNameIsTheSame() {
-    Client firstClient = new Client("")
+    Client firstClient = new Client("Simon", "Cowell", 1);
+    Client secondClient = new Client("Simon", "Cowell", 1);
+    assertTrue(firstClient.equals(secondClient));
+  }
+ // RETRIEVING THE ID TEST
+
+  @Test
+  public void save_assignsIdToObject() {
+    Client testClient = new Client("Kelvin", "Cleif", 1);
+    testClient.save();
+    Client savedClient = Client.all()
   }
 }
