@@ -5,13 +5,13 @@ import java.util.Arrays;
 public class Client {
   private int id;
   private String name;
-  private String stylist_id;
+  private int stylist_id;
 
   public Client(String name, int stylist_id) {
     this.name = name;
-    this.stylist_id;
+    this.stylist_id = stylist_id;
   }
-
+ 
   public String getName() {
     return name;
   }
