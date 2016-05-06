@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="StylistTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-05-06T19:21:41" hostname="epicodus-39.local" time="0.001">
+<testsuite name="StylistTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2016-05-06T22:09:47" hostname="epicodus-39.local" time="0.174">
   <properties/>
-  <testcase name="getStylistName_stylistInstantiatesWithStylistName_String" classname="StylistTest" time="0.001"/>
-  <testcase name="Stylist_instantiatesCorrectly_True" classname="StylistTest" time="0.0"/>
+  <testcase name="getStylistName_stylistInstantiatesWithStylistName_String" classname="StylistTest" time="0.085"/>
+  <testcase name="Stylist_instantiatesCorrectly_True" classname="StylistTest" time="0.006"/>
+  <testcase name="all_emptyAtFirst" classname="StylistTest" time="0.032"/>
+  <testcase name="find_findsStylistInDatabase_true" classname="StylistTest" time="0.019"/>
+  <testcase name="save_returnsTrueIfDescriptionsAreTheSame" classname="StylistTest" time="0.013"/>
+  <testcase name="equals_returnsTrueIfTypesAreTheSame" classname="StylistTest" time="0.005"/>
+  <testcase name="save_assignsIdToObject" classname="StylistTest" time="0.014"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

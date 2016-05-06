@@ -1,17 +1,17 @@
 import java.util.List;
-// import org.sql2o.*;
+import org.sql2o.*;
 import java.util.Arrays;
 
 public class Stylist {
   private int id;
-  private String stylist;
+  private String name;
 
-  public Stylist(String stylist) {
-    this.stylists = stylist;
+  public Stylist(String name) {
+    this.name = name;
   }
 
   public String getStylistName() {
-    return stylist;
+    return name;
   }
 
   public int getId() {
@@ -19,7 +19,7 @@ public class Stylist {
   }
 
   public static List<Stylist> all() {
-    String sql = "SELECT id, name FROM stylists"
+    String sql = "SELECT * FROM stylists";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Stylist.class);
     }
@@ -38,9 +38,9 @@ public class Stylist {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO Stylist(name) VALUES (:name)";
+      String sql = "INSERT INTO stylists(name) VALUES (:name)";
       this.id = (int) con.createQuery(sql, true)
-      .addParameter("stylists", this.stylist)
+      .addParameter("name", this.name)
       .executeUpdate()
       .getKey();
     }
@@ -48,19 +48,22 @@ public class Stylist {
 
   public static Stylist find(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM stylist where id=:id";
-      Stylist stylist = con.createQuery(sql)
+      String sql = "SELECT * FROM stylists where id=:id";
+      Stylist name = con.createQuery(sql)
       .addParameter("id", id)
       .executeAndFetchFirst(Stylist.class);
-    return stylist;
+    return name;
     }
   }
 
-  public List<Client> getClient() {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM clients where stylist_id=:id";
-    }
-  }
+  // public List<Client> getClient() {
+  //   try(Connection con = DB.sql2o.open()) {
+  //     String sql = "SELECT * FROM clients where stylist_id=:id";
+  //     return con.createQuery(sql)
+  //     .addParameter("id", this.id)
+  //     .executeAndFetch(Client.class);
+  //   }
+  // }
 
 
 }
