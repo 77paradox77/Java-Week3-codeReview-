@@ -21,20 +21,22 @@ public class AppTest extends FluentTest {
   @ClassRule
   public static ServerRule server = new ServerRule();
 
-  @Before
-  public void setUp() {
-    DB.sql2o = new sql2o("jdbc:postgresql://localhost:5432/hair_salon_test", null, null);
-  }
-
-  @After
-  public void tearDown() {
-    try(Connection con = DB.spq2o.open()) {
-      String deleteClientsQuery = "DELETE FROM clients *;";
-      String deleteStylistsQuery = "DELETE FROM stylists *;";
-      con.createQuery(deleteClientsQuery).executeUpdate();
-      con.createQuery(deleteStylistsQuery).executeUpdate();
-    }
-  }
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
+  // @Before
+  // public void setUp() {
+  //   DB.sql2o = new sql2o("jdbc:postgresql://localhost:5432/hair_salon_test", null, null);
+  // }
+  //
+  // @After
+  // public void tearDown() {
+  //   try(Connection con = DB.spq2o.open()) {
+  //     String deleteClientsQuery = "DELETE FROM clients *;";
+  //     String deleteStylistsQuery = "DELETE FROM stylists *;";
+  //     con.createQuery(deleteClientsQuery).executeUpdate();
+  //     con.createQuery(deleteStylistsQuery).executeUpdate();
+  //   }
+  // }
 
   @Test
   public void rootTest() {

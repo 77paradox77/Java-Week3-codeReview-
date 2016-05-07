@@ -18,55 +18,55 @@ public class App {
 
     get("/stylists/new", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/category-form.vtl");
+      model.put("template", "templates/stylist-form.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
     post("/stylists", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       String name = request.queryParams("name");
-      Category newCategory = new Category(name);
-      newCategory.save(); // added for DB
-      model.put("template", "templates/category-success.vtl");
+      Stylist newStylist = new Stylist(name);
+      newStylist.save(); // added for DB
+      model.put("template", "templates/stylist-success.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
     get("/stylists", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      model.put("stylists", Category.all());
+      model.put("stylists", Stylist.all());
       model.put("template", "templates/stylists.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
     get("/stylists/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      Category category = Category.find(Integer.parseInt(request.params(":id")));
-      model.put("category", category);
-      model.put("template", "templates/category.vtl");
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      model.put("stylist", stylist);
+      model.put("template", "templates/stylist.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("categories/:id/tasks/new", (request, response) -> {
+    get("stylists/:id/clients/new", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      Category category = Category.find(Integer.parseInt(request.params(":id")));
-      model.put("category", category);
-      model.put("template", "templates/category-tasks-form.vtl");
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      model.put("stylist", stylist);
+      model.put("template", "templates/stylist-clients-form.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/tasks", (request, response) -> {
+    post("/clients", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
 
-      Category category = Category.find(Integer.parseInt(request.queryParams("categoryId")));
+      Stylist stylist = Stylist.find(Integer.parseInt(request.queryParams("stylistId")));
 
-      String description = request.queryParams("description");
+      String clientele = request.queryParams("clientele");
 
       // updated for DB
-      Task newTask = new Task(description, category.getId());
-      newTask.save();
+      Client newClient = new Client(clientele, stylist.getId());
+      newClient.save();
 
-      model.put("category", category);
-      model.put("template", "templates/category-tasks-success.vtl");
+      model.put("stylist", stylist);
+      model.put("template", "templates/stylist-clients-success.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
