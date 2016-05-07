@@ -11,7 +11,7 @@ public class Client {
     this.name = name;
     this.stylist_id = stylist_id;
   }
- 
+
   public String getName() {
     return name;
   }
@@ -38,13 +38,13 @@ public class Client {
     } else {
       Client newClient = (Client) otherClient;
       return this.getName().equals(newClient.getName()) &&
-        this.getStylistId().equals(newClient.getStylistId());
+        this.getName() == newClient.getName();
     }
   }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO clients(name, stylist_id) VALUES (:name, :stylist_id)";
+      String sql = "INSERT INTO clients (name, stylist_id) VALUES (:name, :stylist_id)";
       this.id = (int) con.createQuery(sql, true)
       .addParameter("name", this.name)
       .addParameter("stylist", this.stylist_id)

@@ -1,28 +1,75 @@
-// public class LeapYear {
-//   public static void main(String[] args) {
-//     String layout = "templates/layout.vtl";
-//
-//     get("/", (request, response) -> {
-//       Map<String, Object> model = new HashMap<String, Object>();
-//       model.put("template", "templates/home.vtl");
-//       return new ModelAndView(model, layout);
-//     }, new VelocityTemplateEngine());
-//
-//     get("/output", (request, response) -> {
-//       Map<String, Object> model = new HashMap<String, Object>();
-//       model.put("template", "templates/output.vtl");
-//
-//       Blank blankList = new Blank(); /* >THIS CREATES A INSTANCE THE MAIN CLASS - "blankList" could be named anything<-*/
-//
-//       String userInputString = request.queryParams("???"); /*<--whatever you have in you "name" tag in the home.vtl
-//       (string (on top) is how the user input is going to come out as)String userInput = request.queryParams("???")<- whatever you have in you "name" tag in the home.vtl*/
-//       Integer userInputNumber = Integer.parseInt(userInput);
-//       /*Integer userInput = Integer.parseInt(???);in case you want to convert the user input into a number, from "1234" to 1234.*/
-//
-//       ArrayList myResults = blankList.runBlank(userInputNumber);/* (blankList is the instance of my main class that I created up top)(runBlank is my method)*/
-//
-//       model.put("result", myResults);/* ("results" is being linked from the output.vtl file)*/
-//       return new ModelAndView(model, layout);
-//     }, new VelocityTemplateEngine());
-//   }
-// }
+// import java.util.ArrayList; ** commented-out as no-longer used
+import java.util.Map;
+import java.util.HashMap;
+import spark.ModelAndView;
+import spark.template.velocity.VelocityTemplateEngine;
+import static spark.Spark.*;
+
+public class App {
+  public static void main(String[] args) {
+    staticFileLocation("/public");
+    String layout = "templates/layout.vtl";
+
+    get("/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/stylists/new", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/category-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/stylists", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("name");
+      Category newCategory = new Category(name);
+      newCategory.save(); // added for DB
+      model.put("template", "templates/category-success.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/stylists", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("stylists", Category.all());
+      model.put("template", "templates/stylists.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/stylists/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Category category = Category.find(Integer.parseInt(request.params(":id")));
+      model.put("category", category);
+      model.put("template", "templates/category.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("categories/:id/tasks/new", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Category category = Category.find(Integer.parseInt(request.params(":id")));
+      model.put("category", category);
+      model.put("template", "templates/category-tasks-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/tasks", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+      Category category = Category.find(Integer.parseInt(request.queryParams("categoryId")));
+
+      String description = request.queryParams("description");
+
+      // updated for DB
+      Task newTask = new Task(description, category.getId());
+      newTask.save();
+
+      model.put("category", category);
+      model.put("template", "templates/category-tasks-success.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
+  }
+}
