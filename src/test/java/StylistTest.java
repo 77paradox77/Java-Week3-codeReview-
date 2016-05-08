@@ -33,7 +33,7 @@ public void Stylist_instantiatesCorrectly_True() {
 @Test
 public void getStylistName_stylistInstantiatesWithStylistName_String() {
   Stylist testStylist = new Stylist("Niki");
-  assertEquals("Niki", testStylist.getStylistName());
+  assertEquals("Niki", testStylist.getName());
 }
 
 @Test

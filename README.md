@@ -10,9 +10,10 @@ _{This application is used for employers and employees to organize their busines
 
 ## Setup/Installation Requirements
 
-$ cd ~/Desktop
-$ git clone https://github.com/77paradox77/Java-RestaurantReview-SQL.git
-$ cd Hair-Salon
+* _$ cd ~/Desktop_
+* _$ git clone_
+ * _https://github.com/77paradox77/Java-RestaurantReview-SQL.git_
+* _$ cd Hair-Salon_
 
 ## Open Terminal and run the Postgres application in a seperate window of your terminal:
 
@@ -20,10 +21,10 @@ Hair-Salon Guest$ postgres
 
 ## Now we create the hair salon database:
 
-$ psql
-$ CREATE DATABASE Hair_Salon;
-$ pg_dump Hair_Salon > Hair_Salon.sql
-$ psql Hair_Salon < Hair_Salon.sql
+* _$ psql_
+* _$ CREATE DATABASE Hair_Salon;_
+* _$ pg_dump Hair_Salon > Hair_Salon.sql_
+* _$ psql Hair_Salon < Hair_Salon.sql_
 
 ## Now in terminal we must run the program with gradle:
 

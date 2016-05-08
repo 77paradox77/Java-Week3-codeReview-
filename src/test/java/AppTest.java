@@ -23,26 +23,42 @@ public class AppTest extends FluentTest {
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
-  // @Before
-  // public void setUp() {
-  //   DB.sql2o = new sql2o("jdbc:postgresql://localhost:5432/hair_salon_test", null, null);
-  // }
-  //
-  // @After
-  // public void tearDown() {
-  //   try(Connection con = DB.spq2o.open()) {
-  //     String deleteClientsQuery = "DELETE FROM clients *;";
-  //     String deleteStylistsQuery = "DELETE FROM stylists *;";
-  //     con.createQuery(deleteClientsQuery).executeUpdate();
-  //     con.createQuery(deleteStylistsQuery).executeUpdate();
-  //   }
-  // }
 
   @Test
-  public void rootTest() {
-    goTo("http://localhost:4567/");
-    assertThat(pageSource()).contains("Hair Salon");
- }
+    public void rootTest() {
+      goTo("http://localhost:4567/");
+      assertThat(pageSource()).contains("Hair Salon Database");
+      assertThat(pageSource()).contains("Add a New Stylist");
+      assertThat(pageSource()).contains("View Stylist List");
+    }
+
+    @Test
+    public void stylistIsCreatedTest() {
+      goTo("http://localhost:4567/");
+      click("a", withText("Add a New Stylist"));
+      fill("#input-stylist-name").with("Cherie");
+      submit(".btn");
+      assertThat(pageSource()).contains("Your stylist has been saved.");
+    }
+
+    @Test
+    public void stylistIsDisplayedTest() {
+      goTo("http://localhost:4567/stylists/new");
+      fill("#input-stylist-name").with("Cherie");
+      submit(".btn");
+      click("a", withText("View Stylists"));
+      assertThat(pageSource()).contains("Cherie");
+    }
+
+    @Test
+    public void stylistShowPageDisplaysStylistName() {
+      goTo("http://localhost:4567/stylists/new");
+      fill("#input-stylist-name").with("Cherie");
+      submit(".btn");
+      click("a", withText("View Stylists"));
+      click("a", withText("Cherie"));
+      assertThat(pageSource()).contains("Cherie");
+    }
 
   // @Test
   // public void stylistIsCreatedTest() {

@@ -1,24 +1,4 @@
-<h1>To Do</h1>
+<h1>Hair Salon Database</h1>
 
-<p>Create a new stylist:</p>
-
-<form action="/stylists" method="post">
-  <label for="name">Stylist name</label>
-  <input id="name" name="name" type="text">
-  <button type="submit" class="btn btn-success">Add Stylist</button>
-</form>
-
-
-<form action="/clients" method="post">
-
-
-#if($stylists)
-<p>Click on a stylist to see its clients:</p>
-<ul>
-  #foreach($stylist in $stylists)
-  <li><a href="/stylists/$stylist.getId() ">$stylist.getStylistName()</a></li>
-  #end
-</ul>
-#else
-<p>There are no stylists yet!</p>
-#end
+<a href="/stylists" class="btn btn-primary">View Stylist List</a>
+<a href="/stylists/new" class="btn btn-primary">Add a New Stylist</a>

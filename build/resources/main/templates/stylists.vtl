@@ -1,7 +1,9 @@
 <h1>All Stylists</h1>
+
 <ul>
-  #foreach ($stylist in $stylists)
-  <li><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li>
+  #foreach ($each-stylist in $stylists)
+    <li><a href="/stylists/$each-stylist.getId()">$each-stylist.getName()</a></li>
   #end
 </ul>
-<a href="/stylists/new">Add a new stylst</a>
+
+<a href="/stylists/new" class="btn btn-primary">Add a New Stylist</a>

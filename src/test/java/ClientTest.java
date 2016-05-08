@@ -43,11 +43,11 @@ public class ClientTest {
   //   assertEquals(testClient.getId(), savedClient.getId());
   // }
 
-  @Test
-  public void find_findsClientInDatabase_true() {
-    Client testClient = new Client("Billy", 1);
-    testClient.save();
-    Client savedClient = Client.find(testClient.getId());
-    assertTrue(testClient.getId() == savedClient.getId());
-  }
+  // @Test
+  // public void find_findsClientInDatabase_true() {
+  //   Client testClient = new Client("Billy", 1);
+  //   testClient.save();
+  //   Client savedClient = Client.find(testClient.getId());
+  //   assertTrue(testClient.getId() == savedClient.getId());
+  // }
 }
