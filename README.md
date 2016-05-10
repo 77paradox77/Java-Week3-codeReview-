@@ -18,15 +18,17 @@ _{This application is used for employers and employees to organize their busines
 
 #### Open Terminal and run the Postgres application in a seperate window of your terminal:
 
-Hair-Salon Guest$ postgres
+*_Hair-Salon Guest$ postgres_
 
-- Now that we have postgres running in the background we create the hair salon database:
+### Now that we have postgres running in the background we create the hair salon database:_
 
- Using terminal type the following: $ psql
+ ### Using terminal type the following:
 
- Once inside psql you must type the following:
- # CREATE DATABASE Hair_Salon;
- # psql Hair_Salon < Hair_Salon.sql_
+ *_$ psql_
+
+ ### Once inside psql you must type the following:
+  *_CREATE DATABASE Hair_Salon;_
+  *_psql Hair_Salon < Hair_Salon.sql_
 
  Now that our database is setup correctly in terminal we must run the following program with gradle. To do this last step type:
 
