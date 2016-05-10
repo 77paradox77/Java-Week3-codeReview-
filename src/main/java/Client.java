@@ -38,7 +38,7 @@ public class Client {
     } else {
       Client newClient = (Client) otherClient;
       return this.getName().equals(newClient.getName()) &&
-        this.getName() == newClient.getName();
+      this.getName() == newClient.getName();
     }
   }
 
@@ -47,40 +47,40 @@ public class Client {
       String sql = "INSERT INTO clients (name, stylist_id) VALUES (:name, :stylist_id)";
       this.id = (int) con.createQuery(sql, true)
       .addParameter("name", this.name)
-      .addParameter("stylist", this.stylist_id)
+      .addParameter("stylist_id", this.stylist_id)
       .executeUpdate()
       .getKey();
     }
   }
 
   public static Client find(int id) {
-   try(Connection con = DB.sql2o.open()) {
-     String sql = "SELECT * FROM clients where id=:id";
-     Client client = con.createQuery(sql)
-     .addParameter("id", id)
-     .executeAndFetchFirst(Client.class);
-    return client;
-   }
- }
-
- public void update(String name) {
-  if (name != null) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE clients SET name = :update_name WHERE id=:id";
-      con.createQuery(sql)
+      String sql = "SELECT * FROM clients where id=:id";
+      Client client = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Client.class);
+      return client;
+    }
+  }
+
+  public void update(String name) {
+    if (name != null) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE clients SET name = :update_name WHERE id=:id";
+        con.createQuery(sql)
         .addParameter("update_name", name)
         .addParameter("id", this.getId())
         .executeUpdate();
+      }
     }
   }
-}
 
-public void delete() {
-  try(Connection con = DB.sql2o.open()) {
-    String sql = "DELETE FROM clients WHERE id=:id";
-    con.createQuery(sql)
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM clients WHERE id=:id";
+      con.createQuery(sql)
       .addParameter("id", this.getId())
       .executeUpdate();
+    }
   }
-}
 }

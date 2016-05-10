@@ -12,27 +12,31 @@ _{This application is used for employers and employees to organize their busines
 
 * _$ cd ~/Desktop_
 * _$ git clone_
- * _https://github.com/77paradox77/Java-RestaurantReview-SQL.git_
+* _https://github.com/77paradox77/Java-Week3-codeReview-.git_
 * _$ cd Hair-Salon_
 
-## Open Terminal and run the Postgres application in a seperate window of your terminal:
+
+#### Open Terminal and run the Postgres application in a seperate window of your terminal:
 
 Hair-Salon Guest$ postgres
 
-## Now we create the hair salon database:
+- Now that we have postgres running in the background we create the hair salon database:
 
-* _$ psql_
-* _$ CREATE DATABASE Hair_Salon;_
-* _$ pg_dump Hair_Salon > Hair_Salon.sql_
-* _$ psql Hair_Salon < Hair_Salon.sql_
+ Using terminal type the following: $ psql
 
-## Now in terminal we must run the program with gradle:
+ Once inside psql you must type the following:
+ # CREATE DATABASE Hair_Salon;
+ # psql Hair_Salon < Hair_Salon.sql_
+
+ Now that our database is setup correctly in terminal we must run the following program with gradle. To do this last step type:
 
 Hair-Salon Guest$ gradle run
 
+No you may launch your web browser and view the site underneath the address: localhost:4567
+
 ## Known Bugs
 
-There are several small issues with the .vtl files that are currently being sorted out.
+There may be some minor bugs that need to be fixed after extensive use of the program. Most functionality should be streamlined with few errors.
 
 ## Support and contact details
 

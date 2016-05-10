@@ -32,7 +32,7 @@ public class Stylist {
     } else {
       Stylist newStylist = (Stylist) otherStylist;
       return this.getName().equals(newStylist.getName()) &&
-        this.getId() == newStylist.getId();
+      this.getId() == newStylist.getId();
     }
   }
 
@@ -52,7 +52,7 @@ public class Stylist {
       Stylist name = con.createQuery(sql)
       .addParameter("id", id)
       .executeAndFetchFirst(Stylist.class);
-    return name;
+      return name;
     }
   }
 
@@ -66,25 +66,25 @@ public class Stylist {
   }
 
   public void update(String name) {
-  if (name != null) {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE stylists SET name=:update_name WHERE id=:id";
-      con.createQuery(sql)
+    if (name != null) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE stylists SET name=:update_name WHERE id=:id";
+        con.createQuery(sql)
         .addParameter("update_name", name)
         .addParameter("id", this.id)
         .executeUpdate();
+      }
     }
   }
-}
 
-public void delete() {
-  try(Connection con = DB.sql2o.open()) {
-    String sql = "DELETE FROM stylists WHERE id=:id";
-    con.createQuery(sql)
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM stylists WHERE id=:id";
+      con.createQuery(sql)
       .addParameter("id", this.id)
       .executeUpdate();
+    }
   }
-}
 
 
 }

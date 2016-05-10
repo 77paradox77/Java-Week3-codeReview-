@@ -10,14 +10,14 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -30,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: clients; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+-- Name: clients; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
 --
 
 CREATE TABLE clients (
@@ -64,7 +64,7 @@ ALTER SEQUENCE clients_id_seq OWNED BY clients.id;
 
 
 --
--- Name: stylists; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+-- Name: stylists; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
 --
 
 CREATE TABLE stylists (
@@ -145,7 +145,7 @@ SELECT pg_catalog.setval('stylists_id_seq', 4, true);
 
 
 --
--- Name: clients_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+-- Name: clients_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
 --
 
 ALTER TABLE ONLY clients
@@ -153,7 +153,7 @@ ALTER TABLE ONLY clients
 
 
 --
--- Name: stylists_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+-- Name: stylists_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
 --
 
 ALTER TABLE ONLY stylists
@@ -173,4 +173,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-

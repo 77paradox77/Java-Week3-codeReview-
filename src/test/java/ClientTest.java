@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 
 public class ClientTest {
-
+  
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
@@ -33,21 +33,21 @@ public class ClientTest {
     Client secondClient = new Client("Simon Cowell", 1);
     assertTrue(firstClient.equals(secondClient));
   }
- // RETRIEVING THE ID TEST
+  // RETRIEVING THE ID TEST
 
-  // @Test
-  // public void save_assignsIdToObject() {
-  //   Client testClient = new Client("Kelvin", 1);
-  //   testClient.save();
-  //   Client savedClient = Client.all().get(0);
-  //   assertEquals(testClient.getId(), savedClient.getId());
-  // }
+  @Test
+  public void save_assignsIdToObject() {
+    Client testClient = new Client("Kelvin", 1);
+    testClient.save();
+    Client savedClient = Client.all().get(0);
+    assertEquals(testClient.getId(), savedClient.getId());
+  }
 
-  // @Test
-  // public void find_findsClientInDatabase_true() {
-  //   Client testClient = new Client("Billy", 1);
-  //   testClient.save();
-  //   Client savedClient = Client.find(testClient.getId());
-  //   assertTrue(testClient.getId() == savedClient.getId());
-  // }
+  @Test
+  public void find_findsClientInDatabase_true() {
+    Client testClient = new Client("Billy", 1);
+    testClient.save();
+    Client savedClient = Client.find(testClient.getId());
+    assertTrue(testClient.getId() == savedClient.getId());
+  }
 }

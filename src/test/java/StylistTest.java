@@ -64,7 +64,7 @@ public void save_assignsIdToObject() {
   assertEquals(myStylist.getId(), savedStylist.getId());
 }
 
-// FIND RESTAURANT IN DATABASE
+// FIND Stylist IN DATABASE
 @Test
 public void find_findsStylistInDatabase_true() {
   Stylist myStylist = new Stylist("Melony");
@@ -77,11 +77,11 @@ public void find_findsStylistInDatabase_true() {
  // public void getClient_retrievesAllClientsFromDatabase_ClientsList() {
  //   Stylist myStylist = new Stylist("Barth");
  //   myStylist.save();
- //   Client firstClient = new Client("Tiffany", "Winters", myClient.getId());
+ //   Client firstClient = new Client("Tiffany Winters", firstClient.getId());
  //   firstClient.save();
- //   Client secondClient = new Client("Bobby", "Fischer", myClient.getId());
+ //   Client secondClient = new Client("Bobby Fischer", secondClient.getId());
  //   secondClient.save();
  //   Client[] clients = new Client[] { firstClient, secondClient };
- //   assertTrue(myClient.getClients().containsAll(Arrays.asList(clients)));
+ //   assertTrue(firstClient.getStylistId().contains(firstClient, secondClient));
  // }
 }
